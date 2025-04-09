@@ -12,10 +12,17 @@
       padding: 0;
       color: #000;
     }
+    /* Added container to center the calculator */
+    .container {
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+    }
     .calculator {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 8px;
+      width: 100%;
       max-width: 450px;
       margin: 40px auto;
       padding: 20px;
@@ -23,6 +30,7 @@
       border: 1px solid #ccc;
       border-radius: 10px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      box-sizing: border-box;
     }
     #display {
       grid-column: 1 / -1;
@@ -54,84 +62,100 @@
       color: #000;
       border: 1px solid #ccc;
     }
+    /* Mobile adjustments */
+    @media screen and (max-width: 500px) {
+      .calculator {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      button {
+        font-size: 16px;
+        padding: 10px;
+      }
+      #display {
+        font-size: 20px;
+        padding: 10px 15px;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="calculator">
-    <input type="text" id="display" readonly>
+  <div class="container">
+    <div class="calculator">
+      <input type="text" id="display" readonly>
 
-    <button onclick="clearDisplay()" class="clear">AC</button>
-    <button onclick="backspace()" class="clear">⌫</button>
-    <button onclick="appendToDisplay('%')" class="operator">%</button>
-    <button onclick="appendToDisplay('/')" class="operator">/</button>
-    <button onclick="convertToDMS()" class="function">DMS</button>
+      <button onclick="clearDisplay()" class="clear">AC</button>
+      <button onclick="backspace()" class="clear">⌫</button>
+      <button onclick="appendToDisplay('%')" class="operator">%</button>
+      <button onclick="appendToDisplay('/')" class="operator">/</button>
+      <button onclick="convertToDMS()" class="function">DMS</button>
 
-    <button onclick="appendToDisplay('7')">7</button>
-    <button onclick="appendToDisplay('8')">8</button>
-    <button onclick="appendToDisplay('9')">9</button>
-    <button onclick="appendToDisplay('*')" class="operator">×</button>
+      <button onclick="appendToDisplay('7')">7</button>
+      <button onclick="appendToDisplay('8')">8</button>
+      <button onclick="appendToDisplay('9')">9</button>
+      <button onclick="appendToDisplay('*')" class="operator">×</button>
 
-    <button onclick="appendToDisplay('4')">4</button>
-    <button onclick="appendToDisplay('5')">5</button>
-    <button onclick="appendToDisplay('6')">6</button>
-    <button onclick="appendToDisplay('-')" class="operator">-</button>
+      <button onclick="appendToDisplay('4')">4</button>
+      <button onclick="appendToDisplay('5')">5</button>
+      <button onclick="appendToDisplay('6')">6</button>
+      <button onclick="appendToDisplay('-')" class="operator">-</button>
 
-    <button onclick="appendToDisplay('1')">1</button>
-    <button onclick="appendToDisplay('2')">2</button>
-    <button onclick="appendToDisplay('3')">3</button>
-    <button onclick="appendToDisplay('+')" class="operator">+</button>
+      <button onclick="appendToDisplay('1')">1</button>
+      <button onclick="appendToDisplay('2')">2</button>
+      <button onclick="appendToDisplay('3')">3</button>
+      <button onclick="appendToDisplay('+')" class="operator">+</button>
 
-    <button onclick="appendToDisplay('0')" style="grid-column: span 2">0</button>
-    <button onclick="appendToDisplay('.')">.</button>
-    <button onclick="appendToDisplay('(')">(</button>
-    <button onclick="appendToDisplay(')')">)</button>
+      <button onclick="appendToDisplay('0')" style="grid-column: span 2">0</button>
+      <button onclick="appendToDisplay('.')">.</button>
+      <button onclick="appendToDisplay('(')">(</button>
+      <button onclick="appendToDisplay(')')">)</button>
 
-    <button onclick="toggleAngleMode()" class="function" id="angleModeBtn">RAD</button>
-    <button onclick="appendToDisplay('e')" class="function">e</button>
-    <button onclick="appendToDisplay('^')" class="function">^</button>
-    <button onclick="appendToDisplay('!')" class="function">!</button>
-    <button onclick="calculate()" class="equals" style="grid-column: span 2">=</button>
+      <button onclick="toggleAngleMode()" class="function" id="angleModeBtn">RAD</button>
+      <button onclick="appendToDisplay('e')" class="function">e</button>
+      <button onclick="appendToDisplay('^')" class="function">^</button>
+      <button onclick="appendToDisplay('!')" class="function">!</button>
+      <button onclick="calculate()" class="equals" style="grid-column: span 2">=</button>
 
-    <button onclick="appendToDisplay('asin(')" class="function">sin⁻¹</button>
-    <button onclick="appendToDisplay('acos(')" class="function">cos⁻¹</button>
-    <button onclick="appendToDisplay('atan(')" class="function">tan⁻¹</button>
-    <button onclick="appendToDisplay('sin(')" class="function">sin</button>
-    <button onclick="appendToDisplay('cos(')" class="function">cos</button>
+      <button onclick="appendToDisplay('asin(')" class="function">sin⁻¹</button>
+      <button onclick="appendToDisplay('acos(')" class="function">cos⁻¹</button>
+      <button onclick="appendToDisplay('atan(')" class="function">tan⁻¹</button>
+      <button onclick="appendToDisplay('sin(')" class="function">sin</button>
+      <button onclick="appendToDisplay('cos(')" class="function">cos</button>
 
-    <button onclick="appendToDisplay('tan(')" class="function">tan</button>
-    <button onclick="appendToDisplay('log(')" class="function">log</button>
-    <button onclick="appendToDisplay('ln(')" class="function">ln</button>
-    <button onclick="appendToDisplay('√(')" class="function">√</button>
-    <button onclick="appendToDisplay('π')" class="function">π</button>
+      <button onclick="appendToDisplay('tan(')" class="function">tan</button>
+      <button onclick="appendToDisplay('log(')" class="function">log</button>
+      <button onclick="appendToDisplay('ln(')" class="function">ln</button>
+      <button onclick="appendToDisplay('√(')" class="function">√</button>
+      <button onclick="appendToDisplay('π')" class="function">π</button>
 
-    <button onclick="insertAns()" class="white-btn">Ans</button>
-    <button onclick="appendToDisplay('^2')" class="function">x²</button>
-    <button onclick="appendToDisplay('^3')" class="function">x³</button>
-    <button onclick="memoryAdd()" class="white-btn">M+</button>
-    <button onclick="memorySubtract()" class="white-btn">M-</button>
-    <button onclick="memoryRecall()" class="white-btn">MR</button>
-    <button onclick="memoryClear()" class="white-btn">MC</button>
-    <button onclick="showHistory()" class="white-btn" style="grid-column: span 2">History</button>
+      <button onclick="insertAns()" class="white-btn">Ans</button>
+      <button onclick="appendToDisplay('^2')" class="function">x²</button>
+      <button onclick="appendToDisplay('^3')" class="function">x³</button>
+      <button onclick="memoryAdd()" class="white-btn">M+</button>
+      <button onclick="memorySubtract()" class="white-btn">M-</button>
+      <button onclick="memoryRecall()" class="white-btn">MR</button>
+      <button onclick="memoryClear()" class="white-btn">MC</button>
+      <button onclick="showHistory()" class="white-btn" style="grid-column: span 2">History</button>
 
-    <button onclick="insertTripleQuotes()" class="white-btn" style="grid-column: span 2">'''</button>
-    <button onclick="toggleENG()" class="white-btn" style="grid-column: span 2">ENG</button>
+      <button onclick="insertTripleQuotes()" class="white-btn" style="grid-column: span 2">'''</button>
+      <button onclick="toggleENG()" class="white-btn" style="grid-column: span 2">ENG</button>
 
-    <!-- MISSING BUTTONS ADDED BELOW -->
-    <button onclick="toggleSign()" class="function">(-)</button>
-    <button onclick="insertEXP()" class="function">EXP</button>
-    <button onclick="reciprocal()" class="function">x⁻¹</button>
-    <button onclick="appendToDisplay('nCr(')" class="function">nCr</button>
-    <button onclick="appendToDisplay('nPr(')" class="function">nPr</button>
-    <button onclick="insertRandom()" class="function">Ran#</button>
-    <button onclick="convertToPolar()" class="function">Pol</button>
-    <button onclick="convertToRectangular()" class="function">Rec</button>
-    <button onclick="convertToPolar()" class="function">→rθ</button>
-    <button onclick="convertToRectangular()" class="function">→xy</button>
-    <button onclick="convertToFraction()" class="function">a b/c</button>
-    <button onclick="convertToSci()" class="function">x10^x</button>
-    <button onclick="sto()" class="white-btn">STO</button>
-    <button onclick="statPush()" class="white-btn">STAT</button>
-    <button onclick="statInsert()" class="white-btn">INS</button>
+      <!-- Additional Buttons -->
+      <button onclick="toggleSign()" class="function">(-)</button>
+      <button onclick="insertEXP()" class="function">EXP</button>
+      <button onclick="reciprocal()" class="function">x⁻¹</button>
+      <button onclick="appendToDisplay('nCr(')" class="function">nCr</button>
+      <button onclick="appendToDisplay('nPr(')" class="function">nPr</button>
+      <button onclick="insertRandom()" class="function">Ran#</button>
+      <button onclick="convertToPolar()" class="function">Pol</button>
+      <button onclick="convertToRectangular()" class="function">Rec</button>
+      <button onclick="convertToPolar()" class="function">→rθ</button>
+      <button onclick="convertToRectangular()" class="function">→xy</button>
+      <button onclick="convertToFraction()" class="function">a b/c</button>
+      <button onclick="convertToSci()" class="function">x10^x</button>
+      <button onclick="sto()" class="white-btn">STO</button>
+      <button onclick="statPush()" class="white-btn">STAT</button>
+      <button onclick="statInsert()" class="white-btn">INS</button>
+    </div>
   </div>
 
   <script>
@@ -152,7 +176,7 @@
     function appendToDisplay(value, cursorOffset = value.length) {
       const d = document.getElementById('display'),
             s = d.selectionStart, e = d.selectionEnd, v = d.value;
-      d.value = v.slice(0,s) + value + v.slice(e);
+      d.value = v.slice(0, s) + value + v.slice(e);
       d.focus();
       d.setSelectionRange(s + cursorOffset, s + cursorOffset);
     }
@@ -165,12 +189,12 @@
       const d = document.getElementById('display');
       d.removeAttribute('readonly');
       const s = d.selectionStart, e = d.selectionEnd;
-      if (s===e && s>0) {
-        d.value = d.value.slice(0,s-1) + d.value.slice(s);
-        d.setSelectionRange(s-1,s-1);
+      if (s === e && s > 0) {
+        d.value = d.value.slice(0, s - 1) + d.value.slice(s);
+        d.setSelectionRange(s - 1, s - 1);
       } else {
-        d.value = d.value.slice(0,s) + d.value.slice(e);
-        d.setSelectionRange(s,s);
+        d.value = d.value.slice(0, s) + d.value.slice(e);
+        d.setSelectionRange(s, s);
       }
       setTimeout(() => d.setAttribute('readonly', true), 0);
     }
@@ -183,47 +207,47 @@
               .replace(/nCr\(([^,]+),([^)]+)\)/g, 'comb($1,$2)')
               .replace(/nPr\(([^,]+),([^)]+)\)/g, 'perm($1,$2)')
               // constants & trig
-              .replace(/π/g,'Math.PI').replace(/e/g,'Math.E')
-              .replace(/\basin\(/g,'Math.asin(')
-              .replace(/\bacos\(/g,'Math.acos(')
-              .replace(/\batan\(/g,'Math.atan(')
-              .replace(/\bsin\(/g,'Math.sin(')
-              .replace(/\bcos\(/g,'Math.cos(')
-              .replace(/\btan\(/g,'Math.tan(')
-              .replace(/log/g,'Math.log10')
-              .replace(/ln/g,'Math.log')
-              .replace(/√/g,'Math.sqrt')
-              .replace(/\^/g,'**')
-              .replace(/%/g,'/100');
+              .replace(/π/g, 'Math.PI').replace(/e/g, 'Math.E')
+              .replace(/\basin\(/g, 'Math.asin(')
+              .replace(/\bacos\(/g, 'Math.acos(')
+              .replace(/\batan\(/g, 'Math.atan(')
+              .replace(/\bsin\(/g, 'Math.sin(')
+              .replace(/\bcos\(/g, 'Math.cos(')
+              .replace(/\btan\(/g, 'Math.tan(')
+              .replace(/log/g, 'Math.log10')
+              .replace(/ln/g, 'Math.log')
+              .replace(/√/g, 'Math.sqrt')
+              .replace(/\^/g, '**')
+              .replace(/%/g, '/100');
 
         // DEG and GRAD conversion
-        if (angleMode==='DEG') {
+        if (angleMode === 'DEG') {
           expr = expr
-            .replace(/Math\.sin\(([^)]+)\)/g,'Math.sin(($1*Math.PI/180))')
-            .replace(/Math\.cos\(([^)]+)\)/g,'Math.cos(($1*Math.PI/180))')
-            .replace(/Math\.tan\(([^)]+)\)/g,'Math.tan(($1*Math.PI/180))')
-            .replace(/Math\.asin\(([^)]+)\)/g,'(Math.asin($1)*180/Math.PI)')
-            .replace(/Math\.acos\(([^)]+)\)/g,'(Math.acos($1)*180/Math.PI)')
-            .replace(/Math\.atan\(([^)]+)\)/g,'(Math.atan($1)*180/Math.PI)');
-        } else if (angleMode==='GRAD') {
+            .replace(/Math\.sin\(([^)]+)\)/g, 'Math.sin(($1*Math.PI/180))')
+            .replace(/Math\.cos\(([^)]+)\)/g, 'Math.cos(($1*Math.PI/180))')
+            .replace(/Math\.tan\(([^)]+)\)/g, 'Math.tan(($1*Math.PI/180))')
+            .replace(/Math\.asin\(([^)]+)\)/g, '(Math.asin($1)*180/Math.PI)')
+            .replace(/Math\.acos\(([^)]+)\)/g, '(Math.acos($1)*180/Math.PI)')
+            .replace(/Math\.atan\(([^)]+)\)/g, '(Math.atan($1)*180/Math.PI)');
+        } else if (angleMode === 'GRAD') {
           expr = expr
-            .replace(/Math\.sin\(([^)]+)\)/g,'Math.sin(($1*Math.PI/200))')
-            .replace(/Math\.cos\(([^)]+)\)/g,'Math.cos(($1*Math.PI/200))')
-            .replace(/Math\.tan\(([^)]+)\)/g,'Math.tan(($1*Math.PI/200))')
-            .replace(/Math\.asin\(([^)]+)\)/g,'(Math.asin($1)*200/Math.PI)')
-            .replace(/Math\.acos\(([^)]+)\)/g,'(Math.acos($1)*200/Math.PI)')
-            .replace(/Math\.atan\(([^)]+)\)/g,'(Math.atan($1)*200/Math.PI)');
+            .replace(/Math\.sin\(([^)]+)\)/g, 'Math.sin(($1*Math.PI/200))')
+            .replace(/Math\.cos\(([^)]+)\)/g, 'Math.cos(($1*Math.PI/200))')
+            .replace(/Math\.tan\(([^)]+)\)/g, 'Math.tan(($1*Math.PI/200))')
+            .replace(/Math\.asin\(([^)]+)\)/g, '(Math.asin($1)*200/Math.PI)')
+            .replace(/Math\.acos\(([^)]+)\)/g, '(Math.acos($1)*200/Math.PI)')
+            .replace(/Math\.atan\(([^)]+)\)/g, '(Math.atan($1)*200/Math.PI)');
         }
 
         // factorial
-        expr = expr.replace(/(\d+)!/g,(_,n)=>{
-          let num=parseInt(n),r=1;
-          for(let i=2;i<=num;i++) r*=i;
+        expr = expr.replace(/(\d+)!/g, (_, n) => {
+          let num = parseInt(n), r = 1;
+          for (let i = 2; i <= num; i++) r *= i;
           return r;
         });
 
         const result = eval(expr);
-        document.getElementById('display').value = (result===undefined?'Error':result);
+        document.getElementById('display').value = (result === undefined ? 'Error' : result);
         lastAnswer = result;
         calcHistory.push(input + ' = ' + result);
       } catch {
@@ -231,12 +255,10 @@
       }
     }
 
-    // ===== ADDED HELPER FUNCTIONS =====
-
     function toggleSign() {
-      const d=document.getElementById('display'),
-            v=parseFloat(d.value);
-      if(!isNaN(v)) d.value = (-v).toString();
+      const d = document.getElementById('display'),
+            v = parseFloat(d.value);
+      if (!isNaN(v)) d.value = (-v).toString();
     }
 
     function insertEXP() {
@@ -244,24 +266,24 @@
     }
 
     function reciprocal() {
-      const d=document.getElementById('display'),
-            v=parseFloat(d.value);
-      d.value = (!isNaN(v)&&v!==0) ? (1/v).toString() : 'Error';
+      const d = document.getElementById('display'),
+            v = parseFloat(d.value);
+      d.value = (!isNaN(v) && v !== 0) ? (1 / v).toString() : 'Error';
     }
 
-    function comb(n,r) {
-      n=parseInt(n); r=parseInt(r);
-      if(r>n) return 0;
-      let res=1;
-      for(let i=0;i<r;i++) res = res * (n - i) / (i + 1);
+    function comb(n, r) {
+      n = parseInt(n); r = parseInt(r);
+      if (r > n) return 0;
+      let res = 1;
+      for (let i = 0; i < r; i++) res = res * (n - i) / (i + 1);
       return res;
     }
 
-    function perm(n,r) {
-      n=parseInt(n); r=parseInt(r);
-      if(r>n) return 0;
-      let res=1;
-      for(let i=0;i<r;i++) res *= (n - i);
+    function perm(n, r) {
+      n = parseInt(n); r = parseInt(r);
+      if (r > n) return 0;
+      let res = 1;
+      for (let i = 0; i < r; i++) res *= (n - i);
       return res;
     }
 
@@ -270,17 +292,17 @@
     }
 
     function sto() {
-      const v=parseFloat(document.getElementById('display').value);
-      if(!isNaN(v)) memory = v;
+      const v = parseFloat(document.getElementById('display').value);
+      if (!isNaN(v)) memory = v;
     }
 
     function statPush() {
-      const v=parseFloat(document.getElementById('display').value);
-      if(!isNaN(v)) stats.push(v);
+      const v = parseFloat(document.getElementById('display').value);
+      if (!isNaN(v)) stats.push(v);
     }
 
     function statInsert() {
-      if(stats.length) appendToDisplay(stats[stats.length-1].toString());
+      if (stats.length) appendToDisplay(stats[stats.length - 1].toString());
     }
 
     function insertAns() {
@@ -288,18 +310,18 @@
     }
 
     function showHistory() {
-      if(!calcHistory.length) alert('No history.');
+      if (!calcHistory.length) alert('No history.');
       else alert(calcHistory.join('\n'));
     }
 
     function memoryAdd() {
-      let v=parseFloat(document.getElementById('display').value);
-      if(!isNaN(v)) memory += v;
+      let v = parseFloat(document.getElementById('display').value);
+      if (!isNaN(v)) memory += v;
     }
 
     function memorySubtract() {
-      let v=parseFloat(document.getElementById('display').value);
-      if(!isNaN(v)) memory -= v;
+      let v = parseFloat(document.getElementById('display').value);
+      if (!isNaN(v)) memory -= v;
     }
 
     function memoryRecall() {
@@ -315,67 +337,65 @@
     }
 
     function toggleENG() {
-      const d=document.getElementById('display'),
-            v=parseFloat(d.value);
-      if(!isNaN(v)) d.value = v.toExponential(3);
+      const d = document.getElementById('display'),
+            v = parseFloat(d.value);
+      if (!isNaN(v)) d.value = v.toExponential(3);
     }
 
     function convertToDMS() {
-      const d=document.getElementById('display'),
-            v=parseFloat(d.value);
-      if(isNaN(v)){ d.value='Error'; return; }
-      const deg=Math.floor(v),
-            mf=(v-deg)*60,
-            min=Math.floor(mf),
-            sec=((mf-min)*60).toFixed(2);
+      const d = document.getElementById('display'),
+            v = parseFloat(d.value);
+      if (isNaN(v)) { d.value = 'Error'; return; }
+      const deg = Math.floor(v),
+            mf = (v - deg) * 60,
+            min = Math.floor(mf),
+            sec = ((mf - min) * 60).toFixed(2);
       d.value = `${deg}° ${min}' ${sec}"`;
     }
 
     function convertToPolar() {
-      const d=document.getElementById('display'),
-            [x,y]=d.value.split(',').map(parseFloat);
-      if(isNaN(x)||isNaN(y)){ d.value='Error'; return; }
-      let r=Math.hypot(x,y), θ=Math.atan2(y,x);
-      if(angleMode==='DEG') θ*=180/Math.PI;
-      else if(angleMode==='GRAD') θ*=200/Math.PI;
+      const d = document.getElementById('display'),
+            [x, y] = d.value.split(',').map(parseFloat);
+      if (isNaN(x) || isNaN(y)) { d.value = 'Error'; return; }
+      let r = Math.hypot(x, y), θ = Math.atan2(y, x);
+      if (angleMode === 'DEG') θ *= 180 / Math.PI;
+      else if (angleMode === 'GRAD') θ *= 200 / Math.PI;
       d.value = `${r},${θ}`;
     }
 
     function convertToRectangular() {
-      const d=document.getElementById('display'),
-            [r,θ]=d.value.split(',').map(parseFloat);
-      if(isNaN(r)||isNaN(θ)){ d.value='Error'; return; }
-      let rad=θ;
-      if(angleMode==='DEG') rad=θ*Math.PI/180;
-      else if(angleMode==='GRAD') rad=θ*Math.PI/200;
-      const x=r*Math.cos(rad), y=r*Math.sin(rad);
+      const d = document.getElementById('display'),
+            [r, θ] = d.value.split(',').map(parseFloat);
+      if (isNaN(r) || isNaN(θ)) { d.value = 'Error'; return; }
+      let rad = θ;
+      if (angleMode === 'DEG') rad = θ * Math.PI / 180;
+      else if (angleMode === 'GRAD') rad = θ * Math.PI / 200;
+      const x = r * Math.cos(rad), y = r * Math.sin(rad);
       d.value = `${x},${y}`;
     }
 
     function convertToFraction() {
-      const d=document.getElementById('display'),
-            v=parseFloat(d.value);
-      if(isNaN(v)){ d.value='Error'; return; }
-      let tol=1e-6, h1=1, h2=0, k1=0, k2=1, b=v;
-      while(true){
-        let a=Math.floor(b), aux=h1;
-        h1=a*h1+h2; h2=aux;
-        aux=k1; k1=a*k1+k2; k2=aux;
-        b=1/(b-a);
-        if(Math.abs(v-h1/k1)<v*tol) break;
+      const d = document.getElementById('display'),
+            v = parseFloat(d.value);
+      if (isNaN(v)) { d.value = 'Error'; return; }
+      let tol = 1e-6, h1 = 1, h2 = 0, k1 = 0, k2 = 1, b = v;
+      while (true) {
+        let a = Math.floor(b), aux = h1;
+        h1 = a * h1 + h2; h2 = aux;
+        aux = k1; k1 = a * k1 + k2; k2 = aux;
+        b = 1 / (b - a);
+        if (Math.abs(v - h1 / k1) < v * tol) break;
       }
-      d.value=`${h1}/${k1}`;
+      d.value = `${h1}/${k1}`;
     }
 
     function convertToSci() {
-      const d=document.getElementById('display'),
-            v=parseFloat(d.value);
-      if(isNaN(v)){ d.value='Error'; return; }
-      let [m,e]=v.toExponential(6).split('e');
+      const d = document.getElementById('display'),
+            v = parseFloat(d.value);
+      if (isNaN(v)) { d.value = 'Error'; return; }
+      let [m, e] = v.toExponential(6).split('e');
       d.value = `${parseFloat(m)}×10^${parseInt(e)}`;
     }
   </script>
 </body>
 </html>
-
-
