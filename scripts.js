@@ -211,7 +211,7 @@ const formulas = `1. E = mc² — Mass-energy equivalence
 function showFormula() {
   document.getElementById('calcContainer').style.display = 'none';
   const formulaDiv = document.getElementById('formulaContent');
-  formulaDiv.textContent = formulas; // Load formulas list
+  formulaDiv.textContent = formulas; // Load formulas list dynamically
   document.getElementById('formulaOverlay').style.display = 'block';
 }
 function hideFormula() {
