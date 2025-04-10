@@ -1,0 +1,143 @@
+body {
+  background: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #000;
+}
+
+/* Container to center the calculator */
+.container {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.calculator {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  width: 100%;
+  max-width: 450px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+}
+
+#display {
+  grid-column: 1 / -1;
+  padding: 12px 20px;
+  font-size: 24px;
+  text-align: right;
+  background: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  padding: 12px;
+  font-size: 18px;
+  background: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.15);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover { 
+  background: #f7f7f7; 
+}
+
+button:active { 
+  box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.15); 
+}
+
+.operator, .function, .equals, .clear, .white-btn, .black-btn {
+  background: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+}
+
+/* Overlays for History, Sci, and Formula */
+#historyOverlay, #sciOverlay, #formulaOverlay {
+  display: none;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 400px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  padding: 0;
+  z-index: 9999;
+}
+
+#historyOverlay h2, #sciOverlay h2, #formulaOverlay h2 {
+  margin-top: 0;
+}
+
+#historyContent, #formulaContent {
+  white-space: pre-wrap;
+  font-family: monospace;
+}
+
+/* Sci overlay input styling */
+#sciOverlay input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* Formula Overlay header */
+#formulaHeader {
+  width: 100%;
+  background: #f0f0f0;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  text-align: left;
+}
+
+#formulaHeader button {
+  font-size: 16px;
+  padding: 5px 10px;
+}
+
+/* Modified content style for Formula Overlay */
+#formulaContent {
+  max-height: calc(90vh - 50px);
+  overflow-y: auto;
+  white-space: pre-wrap;
+  font-family: monospace;
+  font-size: 14px;
+  padding: 10px;
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 500px) {
+  .calculator {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  button {
+    font-size: 16px;
+    padding: 10px;
+  }
+  #display {
+    font-size: 20px;
+    padding: 10px 15px;
+  }
+}
+
