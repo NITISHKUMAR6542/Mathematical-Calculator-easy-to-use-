@@ -128,16 +128,27 @@ button:active {
 
 /* Mobile adjustments */
 @media screen and (max-width: 500px) {
+  .container {
+    padding: 5px;
+  }
   .calculator {
     grid-template-columns: repeat(4, 1fr);
+    max-width: 100%;
+    margin: 20px auto;
+    padding: 10px;
   }
   button {
     font-size: 16px;
-    padding: 10px;
+    padding: 8px;
   }
   #display {
-    font-size: 20px;
-    padding: 10px 15px;
+    font-size: 18px;
+    padding: 8px 10px;
+  }
+  /* Adjust overlay sizes for mobile */
+  #historyOverlay, #sciOverlay, #formulaOverlay {
+    width: 95%;
+    max-width: 95%;
   }
 }
 
